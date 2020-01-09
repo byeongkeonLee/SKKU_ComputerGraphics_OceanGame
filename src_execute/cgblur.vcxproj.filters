@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="GL\glad\glad.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\bin\shaders\blur.vert">
+      <Filter>Shader files</Filter>
+    </None>
+    <None Include="..\bin\shaders\blur.frag">
+      <Filter>Shader files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{ecb5e3c6-dc65-4417-bfa5-a3aa7df6c9db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader files">
+      <UniqueIdentifier>{10b030d3-d3b1-4329-9de6-af0f55330e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{3dda08c7-d01a-419a-affc-90e6efab414a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cgmath.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="cgut.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_truetype.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="cgblur.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="icon.ico" />
+  </ItemGroup>
+</Project>
