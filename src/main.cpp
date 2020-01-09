@@ -429,6 +429,7 @@ void client_update() {
 
 	barrier->update(ship->distance, gl_time);
 	trap->update(gl_time);
+	water->update(gl_time);
 	hpmp->update(ship->distance, hp, maxhp, hp_shield, mp, maxmp,exper1,maxexp);
 
 	sphere2->update(ship->distance, ship->angle, sphere2->is_render);
@@ -781,7 +782,6 @@ bool user_init()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// define the position of four corner vertices
-	water = new Water(window_size.x,window_size.y);
 	terrain = new Terrain(terrain_path, 256, 256);
 	skycube = new Skycube();
 	trap = new Trap();
@@ -821,6 +821,7 @@ bool user_init()
 	soundmanager = new SoundManager();
 	bgm = new Sound_2d("../bin/sound/bgm.mp3");
 	sail = new Sound_2d("../bin/sound/sail.mp3");
+	water = new Water(window_size.x, window_size.y);
 	return true;
 }
 
@@ -874,7 +875,7 @@ int main( int argc, char* argv[] )
 	glfwSetCursorPosCallback( window, motion );		// callback for mouse movements
 	glfwSetScrollCallback(window,scroll);
 	// enters rendering/event loop
-	
+	float prev_time = 0.0f;
 	for( frame=0; !glfwWindowShouldClose(window) && !game_closed; frame++ )
 	{
 		glfwPollEvents();	// polling and processing of events
@@ -890,7 +891,10 @@ int main( int argc, char* argv[] )
 		glUseProgram(program);
 		glUniform1i(glGetUniformLocation(program, "TEX"), 0);
 		
-
+		while ((float)glfwGetTime() - prev_time < 1.0f / 60.0f) {
+			Sleep(2);
+		}
+		prev_time = (float)glfwGetTime();
 		//PART1
 		water_level = true;
 		camera_update(vec3(cam.eye.x, cam.eye.y, -cam.eye.z), vec3(cam.at.x,cam.at.y, -cam.at.z), vec3(-cam.up.x,-cam.up.y, cam.up.z));

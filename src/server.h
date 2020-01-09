@@ -173,6 +173,7 @@ int server_init() {
 		while (!game_closed) {
 			send(client, (char*)&server_data, sizeof(server_data), 0);
 			int len = recv(client, (char*)&client_data, sizeof(client_data), 0);
+			Sleep(2);
 		}
 		
 		closesocket(client);
@@ -206,6 +207,7 @@ int server_init() {
 			printf("%d client : %f\r", len, server_data.p1_position.x);
 
 			send(client, (char*)&client_data, sizeof(client_data), 0);
+			Sleep(2);
 		}
 		closesocket(client);
 		::WSACleanup();
