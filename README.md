@@ -45,3 +45,17 @@ If you have sufficient EXP, level be up. Then, you can get skill point which mak
  First time, we should take a reflection image by multiplying -1 on camera.eye.z as well as converting camera.at. In this time, only things which z is above 0 should be rendered by using glClipDistance. Then, the picture is taken to Reflection Frame buffer.
  Second time, Refraction framebuffer is similar to reflection framebuffer. Just clip z which is above 0 to render only z<0. 
  Last, all models are rendered an the water texture is finally rendered with mixing refraction framebuffer, reflection framebuffer.
+ 
+ 
+ ### 3) Water - du,dv map
+ 
+ To implement water flowing, our project used dudv map and normal map. The dudv map is a 2-direction vector to represent texture cordinate distortion. Likewise, the normal map has 3-direction value to represent normal bump. Every point's normal vector value will change the normal value according to each 3-direction value.
+
+ Below figure is dudv map and normal map.
+ 
+ ![3](https://user-images.githubusercontent.com/43103079/72234129-df2e0a80-360e-11ea-9123-8f21aaf76c8c.png)
+ 
+ Below figure is a scene which we implemented.
+ 
+![4](https://user-images.githubusercontent.com/43103079/72234130-df2e0a80-360e-11ea-8dc1-eac4bf898a7e.png)
+
