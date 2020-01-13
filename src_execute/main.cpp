@@ -287,8 +287,13 @@ int main( int argc, char* argv[] )
 	glfwSetCursorPosCallback( window, motion );		// callback for mouse movement
 
 	// enters rendering/event loop
+	float prev_time = 0.0f;
 	for( frame=0; !glfwWindowShouldClose(window); frame++ )
 	{
+		while ((float)glfwGetTime() - prev_time < 1.0f / 60.0f) {
+			Sleep(2);
+		}
+		prev_time = (float)glfwGetTime();
 		glfwPollEvents();	// polling and processing of events
 		update();			// per-frame update
 		render();			// per-frame render
