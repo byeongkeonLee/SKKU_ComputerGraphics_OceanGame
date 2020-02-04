@@ -63,7 +63,8 @@ If you have sufficient EXP, level be up. Then, you can get skill point which mak
  
 Below figure shows the water and fog system.
 
-![water](https://user-images.githubusercontent.com/43103079/73737177-79ecb580-4785-11ea-9a6c-60adfe9ce689.png)
+![water](https://user-images.githubusercontent.com/43103079/73738137-3bf09100-4787-11ea-81ba-fa25f8f62bbc.png)
+
 
 ### 5) Terrain
 
