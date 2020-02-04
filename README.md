@@ -29,7 +29,7 @@ If you have sufficient EXP, level be up. Then, you can get skill point which mak
 
 ### 1) Server-Client Programming
 
- It's a server-client 1vs1 (P2P) PVP game. Therefore, we developed server game mode and client game mode. For user conveniencem, we made a game gurn on tool (/bin_execute/cgblur).
+ It's a server-client 1vs1 (P2P) PVP game. Therefore, we developed server game mode and client game mode. For user convenience, we made a game starter on tool (/bin_execute/cgblur).
  The server client model digram is like below.
  
  ![1](https://user-images.githubusercontent.com/43103079/72053115-bd304180-3309-11ea-9b23-35df36f9b53d.png)
@@ -72,3 +72,14 @@ Below figure shows the water and fog system.
 
 ![map](https://user-images.githubusercontent.com/43103079/73738334-a7d2f980-4787-11ea-9979-958b0847b7ba.png)
 
+
+### 6) Particles
+
+ We implement flame thrower with particles system. The particle system is implemented by glAttribPointer to send particles position, color datas at once for high performance. In glsl, the layout is determined to get position and color datas. The figure is below
+ 
+ ![particle](https://user-images.githubusercontent.com/43103079/73739073-efa65080-4788-11ea-8543-4bb43d838d82.png)
+
+
+### 7) Etc
+
+ Other techniques are used but it is minor to explaine in here. Instead, I uploaded some PPT which I used in project presentation. Please refer it. There will be some typos and grammatically errors. I appreciate your patience.
