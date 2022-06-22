@@ -1,9 +1,9 @@
 # SKKU_ComputerGraphics_OceanGame
-computer graphics opengl own 3D game
+computer graphics OpenGL own 3D game
 
 
 ## 1. Playing Key
-In First scene, you can write the server IP by keyboard keypad or number.
+You can write the server IP by keyboard keypad or number in the first scene.
 
     F1 : Start the game as Server
     F2 : Start the game as Client
@@ -11,7 +11,7 @@ In First scene, you can write the server IP by keyboard keypad or number.
     ↑, ↓ : play round up and down
     
   
-In Second scene, you can game by using next key.  
+In the second scene, you can play the game by using the next key.  
 
     W, A, S, D : move the ship  
     (Ctrl + ) 1, 3, 4, space : (Reinforce) Skill  
@@ -21,16 +21,16 @@ In Second scene, you can game by using next key.
     
 ## 2. How to play?
 
-Player should destroy other's ship in playing round time. Crash other player's ship, or attack the ship, or use skill. 
-You can eat the woodboards or barrels on the ocean. Woodboard will recover your HP, and barrel will increase your EXP.
-If you have sufficient EXP, level be up. Then, you can get skill point which make your skill be advanced.
+A player should destroy another's ship in playing time. Crash another player's ship, attack the ship, or use skills. 
+You can eat the wood boards or barrels on the ocean. Wood board will recover your HP, and the barrel will increase your EXP.
+If you have sufficient EXP, your level will be up. Then, you can get a skill point that makes your skill be advanced.
 
 ## 3. Techniques
 
 ### 1) Server-Client Programming
 
- It's a server-client 1vs1 (P2P) PVP game. Therefore, we developed server game mode and client game mode. For user convenience, we made a game starter on tool (/bin_execute/cgblur).
- The server client model digram is like below.
+ It's a server-client 1vs1 PvP game. Therefore, we developed server game mode and client game mode. For the user's convenience, we made a game starter (/bin_execute/cgblur).
+ The server client model diagram is like the following.
  
  ![1](https://user-images.githubusercontent.com/43103079/72053115-bd304180-3309-11ea-9b23-35df36f9b53d.png)
 
@@ -38,48 +38,48 @@ If you have sufficient EXP, level be up. Then, you can get skill point which mak
  
 ### 2) Water - Reflection, Refraction
 
- It's a ship war game. For reality, we implemented ocean using frame buffers. It need to render 3 times like next figure.
+ For reality, we implemented ocean using frame buffers. It needs to render 3 times like the next figure.
  
  ![2](https://user-images.githubusercontent.com/43103079/72053417-53646780-330a-11ea-8c55-816c931ec9be.png)
  
- First time, we should take a reflection image by multiplying -1 on camera.eye.z as well as converting camera.at. In this time, only things which z is above 0 should be rendered by using glClipDistance. Then, the picture is taken to Reflection Frame buffer.
- Second time, Refraction framebuffer is similar to reflection framebuffer. Just clip z which is above 0 to render only z<0. 
- Last, all models are rendered an the water texture is finally rendered with mixing refraction framebuffer, reflection framebuffer.
+ The first time, we should take a reflection image by multiplying -1 on camera.eye.z as well as converting camera.at. In this time, only things which z is above 0 should be rendered by using glClipDistance. Then, the picture is taken to the Reflection Frame buffer.
+ The second time, the Refraction framebuffer is similar to the reflection framebuffer. Just clip z which is above 0 to render only z<0. 
+ Last, all models are rendered on the water texture rendered with mixing refraction framebuffer and reflection framebuffer finally.
  
  
  ### 3) Water - du,dv map
  
- To implement water flowing, our project used dudv map and normal map. The dudv map is a 2-direction vector to represent texture cordinate distortion. Likewise, the normal map has 3-direction value to represent normal bump. Every point's normal vector value will change the normal value according to each 3-direction value.
+ To implement water flowing, our project used dudv map and a normal map. The dudv map is a 2-direction vector to represent texture coordinate distortion. Likewise, the normal map has a 3-direction value to represent a normal bump. Every point's normal vector value will change the normal value according to each 3-direction value.
 
- Below figure is dudv map and normal map.
+ Below the figure is dudv map and a normal map.
  
  ![3](https://user-images.githubusercontent.com/43103079/72234129-df2e0a80-360e-11ea-9123-8f21aaf76c8c.png)
 
 ### 4) Fog system
 
- Visibility is calculated with formular : exp(-pow(distance * density, gradient)). The density and gradient is a constant which is defined at compile time. Distance is the length between each objects and camera.
+ Visibility is calculated with formula : exp(-pow(distance * density, gradient)). The density and gradient are a constant which is defined at compile time. Distance is the length between each object and camera.
  
- Distance is calcualted in fragment shader, and visibility is calculated in vertex shader. The higher visibility is, the more graier color is.
+ Distance is calculated in the fragment shader, and visibility is calculated in the vertex shader. The lower visibility is, the gray color is.
  
-Below figure shows the water and fog system.
+The below figure shows the water and fog system.
 
 ![water](https://user-images.githubusercontent.com/43103079/73738137-3bf09100-4787-11ea-81ba-fa25f8f62bbc.png)
 
 
 ### 5) Terrain
 
- Terrain is generated by height map which is bin/map/heightmap. Black color in figure represents lowest color. The blend map is used to blend the texture of terrain. Each R,G,B value directly represents sand, stone, snow texture. Then, 1-R-G-B value is grass texture. You can see terrain also at figure in 4).
+ The terrain is generated by a height map which is bin/map/heightmap. The black color in the figure represents the lowest color. The blend map is used to blend the texture of the terrain. Each R,G,B value directly represents sand, stone, and snow texture. Then, 1-R-G-B value is grass texture. You can see the terrain also at the figure in 4).
 
 ![map](https://user-images.githubusercontent.com/43103079/73738334-a7d2f980-4787-11ea-9979-958b0847b7ba.png)
 
 
 ### 6) Particles
 
- We implement flame thrower with particles system. The particle system is implemented by glAttribPointer to send particles position, color datas at once for high performance. In glsl, the layout is determined to get position and color datas. The figure is below
+ We implement a flame thrower with a particles system. The particle system is implemented by glAttribPointer to send particles' position, and color data at once for high performance. In glsl, the layout is determined to get position and color data. The figure is below
  
  ![particle](https://user-images.githubusercontent.com/43103079/73739073-efa65080-4788-11ea-8543-4bb43d838d82.png)
 
 
 ### 7) Etc
 
- Other techniques are used but it is minor to explaine in here. Instead, I uploaded some PPT which I used in project presentation. Please refer it. There will be some typos and grammatically errors. I appreciate your patience.
+ Other techniques are used but it is minor to explain here. Instead, I uploaded a PPT which I used in the project presentation. Please refer to it. There will be some typos and grammatical errors. I appreciate your patience.
